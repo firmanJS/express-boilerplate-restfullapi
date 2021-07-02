@@ -1,7 +1,8 @@
 const Users = require('../../models/UserModel')
-const msg = require('../../helpers/exceptions')
-const { paging } = require('../../helpers/pagination')
-const { deletes } = require('../../utils/crud')
+const {
+  paging, getResponse, errorResponse, successResponse
+} = require('../../utils')
+const { deletes } = require('../../utils')
 
 const index = async (req, res) => {
   const paginate = paging(req)
@@ -18,37 +19,37 @@ const index = async (req, res) => {
       count,
       limit: paginate.limit
     }
-    msg.getResponse(req, res, dataMapping)
+    getResponse(req, res, dataMapping)
   } catch (error) {
-    msg.errorResponse(res, error, 500)
+    errorResponse(res, error, 500)
   }
 }
 
 const store = async (input, res) => {
   try {
     const result = await Users.create(input)
-    msg.successResponse(res, 'Create', result)
+    successResponse(res, 'Create', result)
   } catch (error) {
-    msg.errorResponse(res, error, 500)
+    errorResponse(res, error, 500)
   }
 }
 
 const show = async (req, res) => {
   try {
     const result = await Users.findById(req.params.id)
-    msg.successResponse(res, 'Get', result)
+    successResponse(res, 'Get', result)
   } catch (error) {
-    msg.errorResponse(res, error, 500)
+    errorResponse(res, error, 500)
   }
 }
 
 const update = async (req, res) => {
   try {
     const result = await Users.findByIdAndUpdate(req.params.id,
-      { $set: req.body }, { new: true })
-    msg.successResponse(res, 'Update', result)
+      { $set: req.body }, { new: true, runValidators: true },)
+    successResponse(res, 'Update', result)
   } catch (error) {
-    msg.errorResponse(res, error, 500)
+    errorResponse(res, error, 500)
   }
 }
 

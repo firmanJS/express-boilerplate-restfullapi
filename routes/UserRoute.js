@@ -1,7 +1,7 @@
 const express = require('express')
 const rateLimit = require('express-rate-limit')
 const user = require('../api/user/UserController')
-const auth = require('../api/user/AuthController')
+const { login, logout } = require('../api/user/AuthController')
 const { inputValidationUser, schemas } = require('../api/user/validation')
 const { verifyToken, joiResult } = require('../middleware')
 
@@ -28,11 +28,11 @@ router.delete('/:id', verifyToken, user.destroy)
 
 // authenticate route
 router.post('/auth/login', joiResult(schemas.userLogin, 'body'), (req, res) => {
-  auth.login(req.body, res)
+  login(req.body, res)
 })
 router.post('/auth/register', (req, res) => {
   user.store(inputValidationUser(req), res)
 })
-router.get('/auth/logout', verifyToken, auth.logout)
+router.get('/auth/logout', verifyToken, logout)
 
 module.exports = router

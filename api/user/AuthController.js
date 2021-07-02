@@ -1,6 +1,6 @@
 const Users = require('../../models/UserModel')
 const BlackList = require('../../models/BlacklistModel')
-const msg = require('../../helpers/exceptions')
+const msg = require('../../utils')
 const { verifyLoginPassword } = require('./validation')
 
 const login = async (param, res) => {

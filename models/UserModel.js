@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const attributes = require('./attributes/user_attr')
 const remap = require('./functions/user_func')
+const { customUniqueMessage } = require('./validation')
 
 const { Schema } = mongoose
 
@@ -16,4 +17,7 @@ const UserSchema = new Schema({
 UserSchema.methods.userList = () => {
   remap.list(this)
 }
+
+UserSchema.post(['save', 'findOneAndUpdate'], (error, _, next) => customUniqueMessage(error, next))
+
 module.exports = mongoose.model('User', UserSchema)

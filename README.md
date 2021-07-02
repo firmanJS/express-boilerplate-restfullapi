@@ -134,7 +134,6 @@ in file `documentation.json` export to your postman
 ├── api/              * all api file here
 ├── config/           * all configuration file here
 |   └── db.js         * configuration database
-├── helpers/          * all helper or middleware file here
 ├── middleware/       * all middleware file here, for check before next to api
 ├── models/           * all models schema file here
 |   └── attributes    * custom your attribute if line is to long

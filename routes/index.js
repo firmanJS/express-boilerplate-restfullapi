@@ -6,7 +6,7 @@ const user = require('./UserRoute')
 const item = require('./ItemRoute')
 const customer = require('./CustomerRoute')
 const country = require('./CountryRoute')
-const { API_PATH } = require('../helpers/constant')
+const { API_PATH } = require('../utils')
 
 routing.use(index)
 routing.use(`${API_PATH}/user`, user)

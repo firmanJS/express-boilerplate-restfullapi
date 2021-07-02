@@ -1,7 +1,6 @@
 const swaggerUi = require('swagger-ui-express')
 const express = require('express')
-const { API_PATH } = require('../helpers/constant')
-const { customResponse } = require('../helpers/exceptions')
+const { API_PATH, customResponse } = require('../utils')
 const { index } = require('../static')
 
 const router = express.Router()

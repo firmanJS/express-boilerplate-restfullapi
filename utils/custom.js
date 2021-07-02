@@ -1,4 +1,5 @@
 const moment = require('moment')
+const { successResponse, notFoundHandler } = require('./index')
 
 const convertDate = (result) => {
   const createdAt = result?.createdAt || Date.now()
@@ -10,12 +11,15 @@ const convertDate = (result) => {
   return result
 }
 
-const validateData = (req, res, msg, message, result) => {
+const validateData = (req, res, message, result) => {
+  let msg
   if (result) {
-    msg.successResponse(res, message, result)
+    msg = successResponse(res, message, result)
   } else {
-    msg.notFoundHandler(req, res)
+    msg = notFoundHandler(req, res)
   }
+
+  return msg
 }
 
 module.exports = {

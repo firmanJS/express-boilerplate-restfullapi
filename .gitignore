@@ -6,3 +6,5 @@ npm-debug.log
 /.nyc_output
 core
 /logs
+yarn.lock
+package-lock.json
